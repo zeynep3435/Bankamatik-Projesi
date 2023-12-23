@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bankamatik Giriş Sayfası</title>
+    <style>
+       
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: linear-gradient(to right, rgb(255, 0, 170),rgb(216, 192, 255),rgb(0, 195, 255));
+            margin: 100px;
+        }  
+        input{
+            width: 80%;
+            height: 30px;
+            margin-top: 30px;   
+        }
+        button{
+            width: 80%;
+            height: 30px;
+            margin-top:30px;
+            border-radius: 15px;
+            background-color: orangered;
+            cursor: pointer;
+        }
+        body h1,button {
+            color: bisque;
+        }
+       
+    </style>
+</head>
+<body>
+     
+    <div class="container">
+    
+        <h1>Giriş Yap</h1>
+     
+    <input type="text" id="girilen isim" placeholder="Kullanıcı Adınızı  Giriniz"><br>
+    <br>
+    <input type="text" id="girilen sifre" placeholder="Lütfen Şifrenizi Giriniz"><br>
+    <br>
+         
+    <br><br>
+    <button onclick="girisYap()">Giriş Yap</button>
+    </div>
+   
+    <script>
+        let kullaniciAdi = "zeynep";
+        let sifre = "banka12";
+        let bakiye = 100000;
+    
+        function girisYap() {
+          let girilenKullaniciAdi = prompt("Kullanıcı Adı: ");
+          let girilenSifre = prompt("Şifre: ");
+    
+          if (girilenKullaniciAdi == kullaniciAdi && girilenSifre == sifre) {
+            alert("HOŞGELDİNİZ ZEYNEP , BAKİYENİZ: " +  "100000" + " TL");
+            islem();
+          } 
+          else {
+            alert("ŞİFRE HATALI");
+          }
+        }
+    
+        function islem() {
+          let secim = prompt("1. Para Çek   2. Para Yatır  3. Kredi Çek ");
+    
+          if (secim == "1") {
+            paraCek();
+          } 
+          else if (secim == "2") {
+            paraYatir();
+          } 
+          else if (secim == "3") {
+            krediCek();
+          } 
+         else {
+            alert("LÜTFEN YAPMAK İSTEDİĞİNİZ İŞLEMİ SEÇİNİZ");
+            islem();
+          }
+        }
+    
+        function paraCek() {
+          let cekilenMiktar = prompt("Çekmek istediğiniz miktarı girin: ");
+          if (cekilenMiktar <= bakiye) {
+            bakiye -= Number(cekilenMiktar);
+            alert("Para çekme işlemi başarılı. Yeni bakiyeniz: " + bakiye + " TL");
+          } 
+          else {
+            alert("BAKİYENİZDEN YÜKSEK BİR TUTAR ÇEKMEK İSTEDİNİZ,BAKİYENİZ YETERLİ DEĞİL");
+          }
+          islem();
+        }
+    
+        function paraYatir() {
+          let yatirilanMiktar = prompt("Yatırmak istediğiniz miktarı girin: ");
+          bakiye += Number(yatirilanMiktar);
+          alert("Para yatırma işlemi başarılı. Yeni bakiyeniz: " + bakiye + " TL");
+          islem();
+        }
+    
+        function krediCek() {
+          let Cekilmekistenenkredi = prompt("Çekmek istediğiniz kredi miktarını girin: ");
+          bakiye += Number(Cekilmekistenenkredi);
+          alert("Kredi çekme işlemi başarılı. Yeni bakiyeniz: " + bakiye + " TL");
+          islem();
+        }
+        
+    //else if{ let cekilmekistenekredi =Number prompt("çekilmek istenen tutarı girin:");}
+       //let krediodenecektutar = cekilmekistenenkredi*0.18
+      // let aylıkKrediodemesi =krediodenecektutar/12
+      //alert("Kredi çekme işlemi başarılı. Yeni bakiyeniz: " +bakiye +()" TL Aylık ödenecek tutar:"" Toplam Ödeme: " +toplamOdeme.toFixed(2) +" TL";
+       //ASLINDA HOCAM BURADA KREDİ KISMINI AYLIK TAKSİT VE TOPLAM GERİ ÖDEMEYİ YAZMAYA ÇALİŞTIM OLMADı
+          //let toplamOdeme = aylikOdeme * toplamTaksitSayisi;
+          //bakiye += Number(krediMiktari);
+         
+
+      </script>
+</body>
+</html>
